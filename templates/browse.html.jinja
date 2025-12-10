@@ -1,15 +1,44 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  </head>
-  <body>
-    {% include "components/navbar.html.jinja" %}
-    <h1 class="text-3xl font-bold underline">
-      Browse
-    </h1>
-    <section class="picture relative bg"> </section>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-[#faf7f2] text-gray-800">
+  {% include "components/navbar.html.jinja" %}
+
+
+  <h1 class="text-center text-4xl font-bold mt-10 mb-6 tracking-wide">
+    Browse
+  </h1>
+
+
+  <div class="w-24 h-1 bg-amber-700 mx-auto mb-10 rounded-full"></div>
+
+  <section class="relative w-full h-64 bg-cover bg-center rounded-xl shadow-lg max-w-5xl mx-auto mb-16"
+    style="background-image: url('/static/featured.jpg');">
+
+    <div class="absolute inset-0 bg-black/30 rounded-xl"></div>
+
+    <div class="absolute bottom-6 left-6 text-white">
+      <h2 class="text-3xl font-bold">Our Featured Henna Designs</h2>
+      <p class="text-lg opacity-90">Explore our most loved patterns</p>
+    </div>
+  </section>
+  <main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto p-6">
+
+    {% for x in products %}
+    <div class="bg-white rounded-xl shadow-md p-4 hover:shadow-xl transition-shadow duration-300">
+      <img class="h-48 w-full object-cover rounded-md mb-3" src="{{ x['Image'] }}" alt="{{ x['Name'] }}">
+      <div class="text-lg font-semibold">{{ x["Name"] }}</div>
+      <div class="text-amber-700 font-bold text-xl mt-1">${{ x["Price"] }}</div>
+    </div>
+    {% endfor %}
+
+  </main>
+
+</body>
 </html>
