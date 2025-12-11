@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="class= bg-[#faf7f2] min-h-screen">
+    {% include "components/navbar.html.jinja" %}
+
+    <div class="max-w-7xl mx-auto p-6">
+
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <div class="lg:col-span-4 bg-white p-6 rounded shadow">
+                <img src="{{ product['Image'] }}" alt="{{ product['Name'] }}" class="w-full " />
+            </div>
+
+            <div class="lg:col-span-5 space-y-4">
+                <h1 class="text-3xl font-bold text-gray-900">
+                    {{ product['Name'] }}
+                </h1>
+
+
+                <p class="text-3xl font-semibold text-gray-900">
+                    ${{ product['Price'] }}
+                </p>
+
+                <ul class="list-disc ml-6 text-gray-700 space-y-2">
+                    <li>30-day return window from delivery date</li>
+                    <li>Item must be in original condition and packaging</li>
+                    <li>Full refund issued within 3–5 business days after inspection</li>
+                    <li>Free return shipping for damaged or incorrect items</li>
+                    <li>{{ product['ShortDescription'] if product['ShortDescription'] else "Easy and hassle-free refund
+                        process." }}</li>
+                </ul>
+
+
+                <div class="pt-4">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">About this item</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        {{ product['Description'] }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3">
+                <div class="bg-white p-6 rounded shadow space-y-4">
+
+                    <p class="text-2xl font-semibold text-gray-900">
+                        ${{ product['Price'] }}
+                    </p>
+
+                    <p class="text-green-600 font-semibold">In Stock</p>
+
+
+
+                    <button
+                        class="w-full py-2 bg-[#e6af6c] text-white border border-[#bf925c] rounded-full font-semibold hover:bg-[#f5bf7d]">
+                        Add to Cart
+                    </button>
+
+                    <button class="w-full py-2 bg-[#e6af6c] text-white border border-[#bf925c] rounded-full font-semibold hover:bg-[#f5bf7d]">
+                        Buy Now
+                    </button>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
