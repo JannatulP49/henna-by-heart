@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Henna By Heart</title>
+  </head>
+
+  <body class="bg-[#faf7f2]">
+    {% include "components/navbar.html.jinja" %}
+
+    <div class="flex justify-center mt-12 px-4">
+      <div class="w-full max-w-md bg-white shadow-md border border-gray-200 rounded-lg p-8">
+        
+
+        <h1 class="text-2xl font-semibold text-center text-[#694f3a] mb-6">
+          Create Your Account
+        </h1>
+        <form action="/register" method="POST" class="flex flex-col gap-4">
+
+          <div>
+            <label class="block text-sm font-medium text-[#694f3a] mb-1">Name</label>
+            <input
+              type="text"
+              name="name"
+              required
+              class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring focus:ring-[#694f3a]"
+              placeholder="Your name"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-[#694f3a] mb-1">Email</label>
+            <input
+              type="email"
+              name="email"
+              required
+              class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring focus:ring-[#694f3a]"
+              placeholder="you@example.com"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-[#694f3a] mb-1">Password</label>
+            <input
+              type="password"
+              name="password"
+              required
+              class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring focus:ring-[#694f3a]"
+              placeholder="Create a password"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[#694f3a] mb-1">Password</label>
+            <input
+              type="password"
+              name="password"
+              required
+              class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring focus:ring-[#694f3a]"
+              placeholder="Confirm password"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="mt-2 w-full bg-[#694f3a] hover:bg-[#7d644f] text-white font-medium py-2 rounded transition duration-200"
+          >
+            Create Account
+          </button>
+        </form>
+
+        <div class="mt-6 text-center text-sm">
+          <p class="text-gray-600">
+            Already have an account?
+            <a
+              href="/login"
+              class="text-[#7d644f] hover:text-[#694f3a] font-medium"
+            >
+              Login in
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>

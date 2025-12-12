@@ -4,12 +4,115 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Henna By Heart</title>
   </head>
-  <body>
+
+  <body class="bg-[#faf7f2] text-[#694f3a]">
     {% include "components/navbar.html.jinja" %}
-    <h1 class="text-3xl font-bold underline">
-      My Home Page
+
+    <section class="relative w-full h-[75vh] flex items-center justify-center overflow-hidden group">
+  <img
+    src="/static/pannel/pannel2.webp"
+    class="absolute inset-0 w-full h-full object-cover opacity-80 transform transition duration-700 ease-in-out group-hover:scale-105 group-hover:opacity-90"
+  />
+
+  <div class="relative z-10 text-center max-w-3xl px-6">
+    <h1 class="text-5xl font-bold mb-4 transition-transform duration-500 ease-in-out group-hover:scale-105" style="color:#694f3a;">
+      Discover the Art of Henna
     </h1>
-    <section class="picture relative bg"> </section>
+    <p class="text-lg text-[#7d644f] mb-6 transition-transform duration-500 ease-in-out group-hover:scale-105">
+      Hand-crafted designs, natural pigments, and timeless tradition —
+      brought to life with elegance and care.
+    </p>
+
+    <a
+      href="/browse"
+      class="px-8 py-3 bg-[#694f3a] text-white rounded-md text-lg font-medium hover:bg-[#7d644f] transition transform duration-300 ease-in-out hover:scale-105"
+    >
+      Explore Our Collection
+    </a>
+  </div>
+</section>
+
+    <section class="py-16 px-6 md:px-20 bg-[#faf7f2]">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="text-3xl font-semibold mb-4">Crafted With Tradition</h2>
+          <p class="text-[#7d644f] text-lg leading-relaxed">
+            Every stroke of henna tells a story, one of heritage, celebration,
+            and natural artistry. At Henna Haven, we honor this artform by
+            offering high-quality products, hand-made designs, and inspiration
+            for every occasion.
+          </p>
+        </div>
+
+        <img
+          src="/static/pannel/pannel3.webp"
+          alt="Henna Design"
+          class="rounded-lg shadow-lg"
+        />
+      </div>
+    </section>
+
+
+    <section class="py-16 bg-[#f4efe9]">
+      <h2 class="text-center text-3xl font-semibold mb-10">Customer Favorites</h2>
+
+      <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 px-6">
+
+        <div class="bg-white border border-[#e5ded5] rounded-lg shadow hover:shadow-lg transition p-4">
+          <img
+            src="/static/pannel/pannel4.webp"
+            class="rounded-md mb-4"
+          />
+          <h3 class="text-xl font-medium mb-2">Premium Henna Cones</h3>
+          <p class="text-[#7d644f] mb-3">
+            Smooth texture, deep stain, and all-natural ingredients.
+          </p>
+          <a href="/browse" class="text-[#694f3a] hover:text-[#7d644f] font-semibold">
+            Shop now →
+          </a>
+        </div>
+
+        <div class="bg-white border border-[#e5ded5] rounded-lg shadow hover:shadow-lg transition p-4">
+          <img
+            src="/static/pannel/pannel5.jpg"
+            class="rounded-md mb-4"
+          />
+          <h3 class="text-xl font-medium mb-2">Traditional Design Kit</h3>
+          <p class="text-[#7d644f] mb-3">
+            Everything you need to create stunning henna patterns at home.
+          </p>
+          <a href="/browse" class="text-[#694f3a] hover:text-[#7d644f] font-semibold">
+            Shop now →
+          </a>
+        </div>
+
+
+        <div class="bg-white border border-[#e5ded5] rounded-lg shadow hover:shadow-lg transition p-4">
+          <img
+            src="/static/pannel/pannel6.jpg"
+            class="rounded-md mb-4"
+          />
+          <h3 class="text-xl font-medium mb-2">Henna Aftercare Oil</h3>
+          <p class="text-[#7d644f] mb-3">
+            Ensures your stain lasts longer and stays darker.
+          </p>
+          <a href="/browse" class="text-[#694f3a] hover:text-[#7d644f] font-semibold">
+            Shop now →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <footer class="bg-[#694f3a] text-white py-8 mt-10">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <p class="text-lg mb-2">Henna By Heart</p>
+        <p class="text-sm opacity-80">Celebrating artistry, culture, and beauty.</p>
+      </div>
+    </footer>
+
   </body>
 </html>

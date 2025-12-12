@@ -1,21 +1,50 @@
-<nav class="bg-[#F8EDE3] p-4 px-6 rounded-b-2xl shadow-md flex items-center justify-between font-semibold text-gray-700">
- 
-    <img class="flex items-center" src="/photos/logo.png" alt="Henna By Heart Logo" class="h-10 w-auto">
+<nav
+  class="bg-[#F8EDE3] p-4 px-6 rounded-b-2xl shadow-md flex items-center justify-between font-semibold text-[#694f3a]">
 
+  <img
+    src="/static/logo/logo.png"
+    alt="Henna By Heart Logo"
+    class="h-20 w-20 rounded-full object-cover"
+  >
+  
 
   <div class="flex items-center gap-4 text-sm">
-    <a href="/" class="hover:text-[#FFFFFF] transition">Homepage</a>
-    <a href="/contact" class="hover:text-[#FFFFFF] transition">Contact us</a>
-    <a href="/orders" class="hover:text-blue-600 transition">Orders</a>
-    <a href="/browse" class="hover:text-blue-600 transition">Browse</a>
+    <a href="/" class="hover:text-[#7a5b40] transition">Homepage</a>
+    <a href="/contact" class="hover:text-[#7a5b40] transition">Contact us</a>
+    <a href="/browse" class="hover:text-[#7a5b40] transition">Browse</a>
 
-    <a href="/cart" class="relative hover:text-blue-600 transition">
-      🛒
-      <span class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs px-1.5 rounded-full">2</span>
-    </a>
+    <a href="/cart">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-[#7a5b40] transition" fill="none"
+    viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+  </svg>
+</a>
 
-    <a href="/profile" class="relative hover:text-blue-600 transition">
-      👤
-    </a>
+<div class="flex items-center gap-0">  
+
+  <a href="/login" class="relative hover:text-[#7a5b40] transition">
+  </a>
+
+  <a href="/register" class="relative hover:text-[#7a5b40] transition">
+  </a>
+
+  <div class="relative group">
+    <button class="hover:text-gray-200 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 
+                 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </button>
+
+    <ul class="absolute right-0 mt-2 w-32 bg-[#7a5b40] border border-[#7a5b40] rounded-md 
+               opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+               transition-all duration-200 text-white">
+      <li><a href="/login" class="block px-4 py-2 hover:bg[#7a5b40]">Sign In</a></li>
+      <li><a href="/register" class="block px-4 py-2 hover:bg-[#7a5b40]">Register</a></li>
+    </ul>
   </div>
+
+</div>
 </nav>
