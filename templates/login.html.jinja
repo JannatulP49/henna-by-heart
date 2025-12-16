@@ -10,6 +10,10 @@
   <body class="bg-[#faf7f2]">
     {% include "components/navbar.html.jinja" %}
 
+    {% for message in get_flashed_messages() %}
+       <li>{{ message }}</li>
+    {% endfor %}
+
     <div class="flex justify-center mt-12 px-4">
       <div class="w-full max-w-md bg-white shadow-md border border-gray-200 rounded-lg p-8">
         
@@ -19,11 +23,12 @@
         </h1>
 
 
-        <form action="/login" method="POST" class="flex flex-col gap-4">
+        <form action="/login" method="post" class="flex flex-col gap-4">
 
           <div>
             <label class="block text-sm font-medium text-[#694f3a] mb-1">Email</label>
             <input
+              required
               type="email"
               name="email"
               required
@@ -35,6 +40,7 @@
           <div>
             <label class="block text-sm font-medium text-[#694f3a] mb-1">Password</label>
             <input
+              required
               type="password"
               name="password"
               required
