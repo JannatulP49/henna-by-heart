@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, flash, redirect
 import pymysql
 import pymysql.cursors 
 from dynaconf import Dynaconf
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 
 app = Flask(__name__)
 config = Dynaconf(settings_file=["settings.toml"])
@@ -100,7 +100,7 @@ def register():
     return render_template("register.html.jinja")
 @app.route("/login", methods= [ "POST" , "GET" ] )
 def login():
-      if request.method == 'POST':
+    if request.method == 'POST':
          email = request.form['email']
          password = request.form['password']
 
@@ -120,5 +120,12 @@ def login():
              return redirect ('/browse')
     
 
-         return render_template("login.html.jinja")
+    return render_template("login.html.jinja")
+      
+@app.route("/logout", methods=['GET', 'POST'] )
+@login_required
+def logout():
+    logout_user()
+    flash("You have been logged out.") 
+    return redirect("/")
       
