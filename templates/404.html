@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Not Found</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #faf7f2;
+            color: #7a5b40;
+        }
+
+        .container {
+            text-align: center;
+            background: #ffffff;
+            padding: 50px 60px;
+            border-radius: 16px;
+            box-shadow: 0 18px 35px rgba(122, 91, 64, 0.25);
+            max-width: 420px;
+            border: 2px solid rgba(230, 175, 108, 0.35);
+        }
+
+        h1 {
+            font-size: 6rem;
+            margin: 0;
+            letter-spacing: 4px;
+            color: #7a5b40;
+        }
+
+        h2 {
+            margin-top: 10px;
+            font-weight: 400;
+            color: #7a5b40;
+        }
+
+        p {
+            margin: 20px 0 30px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        a {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #e6af6c;
+            color: #7a5b40;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 18px rgba(230, 175, 108, 0.45);
+        }
+
+        a:hover {
+            background: #d89c56;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(230, 175, 108, 0.55);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <h2>Product Not Found</h2>
+
+        <p>
+            {% if error and error.description %}
+                {{ error.description }}
+            {% else %}
+                The product you are looking for doesn’t exist or may have been removed.
+            {% endif %}
+        </p>
+
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>

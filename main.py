@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request, flash, redirect, abort
 import pymysql
 import pymysql.cursors 
 from dynaconf import Dynaconf
@@ -8,6 +8,8 @@ app = Flask(__name__)
 config = Dynaconf(settings_file=["settings.toml"])
 app.secret_key = config.secret_key
 login_manager = LoginManager( app )
+
+login_manager.login_view = "/login"
 
 class User:
     is_authenticated = True
@@ -67,7 +69,17 @@ def product_page(product_id):
     cursor.execute("SELECT * FROM `Product` WHERE `ID` = %s", (product_id))
     result = cursor.fetchone()
     connection.close()
+
+    if result is None:
+        abort(404)
+
     return render_template("product.html.jinja", product=result)
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template("404.html", error=error), 404
+
+    
 
 
 @app.route("/register", methods=["POST", "GET"])
