@@ -57,13 +57,17 @@
                     <p class="text-green-600 font-semibold">In Stock</p>
 
 
+                    <form method="post" action="/product/{{product['ID']}}/add_to_cart">
+                        <input type="number" name="QTY" value="1" min="1" max="3">
+                        <button
+                            class="w-full py-2 bg-[#e6af6c] text-white border border-[#bf925c] rounded-full font-semibold hover:bg-[#f5bf7d]">
+                            Add to Cart
+                        </button>
+
+                    </form>
 
                     <button
                         class="w-full py-2 bg-[#e6af6c] text-white border border-[#bf925c] rounded-full font-semibold hover:bg-[#f5bf7d]">
-                        Add to Cart
-                    </button>
-
-                    <button class="w-full py-2 bg-[#e6af6c] text-white border border-[#bf925c] rounded-full font-semibold hover:bg-[#f5bf7d]">
                         Buy Now
                     </button>
 
