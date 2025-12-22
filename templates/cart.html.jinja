@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-[#F8EDE3] text-[#7a5b40]">
+    {% include "components/navbar.html.jinja" %}
+
+    <main class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+        <section class="lg:col-span-4 bg-white p-8 rounded-md shadow-sm">
+            <h1 class="text-2xl font-semibold mb-8 border-b border-[#E6D5C3] pb-4">
+                Shopping Cart
+            </h1>
+
+            {% for x in cart %}
+            <div class="flex items-center justify-between py-8 border-b border-[#E6D5C3] last:border-b-0">
+
+                <div class="flex gap-8 items-center">
+
+                    <a href="/product/{{ x['ID'] }}">
+                        <img src="{{ x['Image'] }}" alt="{{ x['Name'] }}" class="w-44 h-44 object-contain" />
+                    </a>
+
+                    <div>
+                        <a href="/product/{{ x['ID'] }}" class="text-xl font-medium hover:text-[#7a5b40]/80 block">
+                            {{ x["Name"] }}
+                        </a>
+
+                        <p class="text-sm mt-2">
+                            In Stock
+                        </p>
+
+                        <p class="text-sm mt-2">
+                            Quantity: {{ x["Quantity"] }}
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="text-xl font-semibold whitespace-nowrap">
+                    $ {{ x["Price"] * x["Quantity"] }}
+                </div>
+
+            </div>
+            {% endfor %}
+        </section>
+
+        <aside class="bg-white p-6 rounded-md shadow-sm h-fit">
+            <p class="text-lg">
+                Subtotal ({{ cart|length }} items):
+                <span class="font-semibold">$TOTAL</span>
+            </p>
+
+            <button class="w-full mt-6 bg-[#7a5b40] hover:bg-[#6a4f38] text-[#F8EDE3] font-medium py-3 rounded-md">
+                Proceed to Checkout
+            </button>
+        </aside>
+
+    </main>
+</body>
+
+</html>
