@@ -12,19 +12,22 @@
 
     <main class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-5 gap-8">
 
-    {% if len(cart_items) != 0 %}
-        <ul>
-            {%for ProductID in cart_items%}
-              <li>{{ ProductID }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
-
         <section class="lg:col-span-4 bg-white p-8 rounded-md shadow-sm">
             <h1 class="text-2xl font-semibold mb-8 border-b border-[#E6D5C3] pb-4">
                 Shopping Cart
             </h1>
+            {% if cart|length == 0 %}
+            <div class="text-center py-16">
+                <p class="text-lg mb-6">
+                    Your cart is empty 🛒
+                </p>
+
+                <a href="/browse"
+                    class="inline-block bg-[#7a5b40] hover:bg-[#6a4f38] text-[#F8EDE3] font-medium px-6 py-3 rounded-md">
+                    Browse Products
+                </a>
+            </div>
+            {% else %}
 
             {% for x in cart %}
             <div class="flex items-center justify-between py-8 border-b border-[#E6D5C3] last:border-b-0">
@@ -45,12 +48,16 @@
                         </p>
 
                         <p class="text-sm mt-2">
-                            <form method="post" action="/cart/{{ x['ProductID'] }}/update_qty">
-                            <input name="qty" type="number" value=" {{ x['Quantity'] }} ">
+                        <form method="post" action="/cart/{{ x['ProductID'] }}/update_qty">
+                            <input name="qty" type="number" value="{{ x['Quantity'] }}">
+                            Quantity:
                             <button type="submit">Update</button>
-                            Quantity: 
-
-                            </form>
+                        </form>
+                        </p>
+                        <p class="text-sm mt-2">
+                        <form method="post" action="/cart/{{ x['ProductID'] }}/delete">
+                            <button type="submit">Remove</button>
+                        </form>
                         </p>
                     </div>
                 </div>
@@ -62,17 +69,19 @@
 
             </div>
             {% endfor %}
+            {% endif %}
         </section>
 
         <aside class="bg-white p-6 rounded-md shadow-sm h-fit">
             <p class="text-lg">
                 Subtotal ({{ cart|length }} items):
-                <span class="font-semibold">$TOTAL</span>
+                <span class="font-semibold">$ {{ total }}</span>
             </p>
 
             <button class="w-full mt-6 bg-[#7a5b40] hover:bg-[#6a4f38] text-[#F8EDE3] font-medium py-3 rounded-md">
                 Proceed to Checkout
             </button>
+
         </aside>
 
     </main>

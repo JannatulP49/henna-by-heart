@@ -166,7 +166,6 @@ def logout():
 def cart():
 
     connection = connect_db()
-
     cursor = connection.cursor()
 
     cursor.execute("""
@@ -176,10 +175,13 @@ def cart():
     """, (current_user.id))  
 
     results = cursor.fetchall() 
-
     connection.close()
 
-    return render_template("cart.html.jinja", cart=results)
+    total = 0
+    for item in results:
+        total = total + item["Price"] * item["Quantity"]
+    
+    return render_template("cart.html.jinja", cart=results, total=total)
 
 @app.route('/cart/<product_id>/update_qty', methods=["POST"])
 @login_required
@@ -192,21 +194,21 @@ def update_cart(product_id):
          SET `Quantity` = %s
          WHERE `ProductID` = %s AND `UserID` = %s
                              
-     """ (new_qty, product_id, current_user.id ))
+     """, (new_qty, product_id, current_user.id ))
     connection.close()
     return redirect('/cart')
 
 
-@app.route('/cart/<product_id>/update_qty', methods=["POST"])
+@app.route('/cart/<product_id>/delete', methods=["POST"])
 @login_required
-def update_cart(product_id):
-    new_qty = request.form['qty']
+def delete_cart_item(product_id):
     connection = connect_db()
     cursor = connection.cursor()
     cursor.execute("""
-         DELETE FROM Cart
-         WHERE ProductID
-                             
-     """ (new_qty, product_id, current_user.id ))
+        DELETE FROM Cart
+        WHERE ProductID = %s AND UserID = %s
+    """, (product_id, current_user.id))
     connection.close()
+    flash("Item removed from cart")
     return redirect('/cart')
+
