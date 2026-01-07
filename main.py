@@ -212,3 +212,38 @@ def delete_cart_item(product_id):
     flash("Item removed from cart")
     return redirect('/cart')
 
+@app.route("/checkout", methods=['GET', 'POST'])
+@login_required
+def check():
+
+    connection = connect_db()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT * FROM `Cart`
+        JOIN `Product` ON `Product`.`ID` = `Cart`.`ProductID`
+        WHERE `UserID` = %s 
+    """, (current_user.id))  
+
+    results = cursor.fetchall() 
+
+    if request.method == 'POST':
+        #create the sle in the database 
+        cursor.execute("INSERT INTO `Sale` (`UserID`) VALUES (%s)", (current_user.id, ))
+        #store products bought
+        sale = cursor.lastrowid 
+        for item in results:
+            cursor.execute("INSERT INTO `SaleCart`(`SaleID`, `ProductID`, `Quantity`) VALUES (%s, %s, %s)", (sale,item['ProductID'], item['Quantity']))
+        #empty cart
+        cursor.execute("DELETE FROM `Cart` WHERE `UserID` = %s", (current_user.id))
+        #thank you screen
+        return redirect('/thank-you')
+
+    connection.close()
+
+    total = 0
+    for item in results:
+        total = total + item["Price"] * item["Quantity"]
+    
+    return render_template("checkout.html.jinja", cart=results, total=total)
+
