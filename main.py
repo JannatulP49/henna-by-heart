@@ -247,3 +247,6 @@ def check():
     
     return render_template("checkout.html.jinja", cart=results, total=total)
 
+@app.route("/thank-you")
+def thank():
+    return render_template("thank-you.html.jinja")
