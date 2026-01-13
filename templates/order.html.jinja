@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +8,7 @@
 </head>
 
 <body class="bg-[#F8EDE3] text-[#7a5b40]">
+
     {% include "components/navbar.html.jinja" %}
 
     <main class="max-w-6xl mx-auto px-6 py-12">
@@ -19,67 +19,52 @@
 
         {% if orders|length == 0 %}
             <div class="text-center py-20 bg-white rounded-md shadow-sm">
-                <p class="text-lg mb-6">You haven't placed any orders yet!</p>
+                <p class="text-lg mb-6">
+                    You haven't placed any orders yet!
+                </p>
+
                 <a href="/browse"
-                   class="inline-block bg-[#7a5b40] hover:bg-[#6a4f38] text-[#F8EDE3] px-6 py-3 rounded-md">
+                   class="inline-block bg-[#7a5b40] hover:bg-[#6a4f38] text-[#F8EDE3] px-6 py-3 rounded-md transition">
                     Start Shopping
                 </a>
             </div>
         {% else %}
 
             {% for order in orders %}
-            <div class="bg-white rounded-md shadow-sm mb-8 p-6">
+                <div class="bg-white rounded-md shadow-sm mb-8 p-6">
 
+                    <div class="flex justify-between items-center border-b border-[#E6D5C3] pb-4 mb-4">
+                        <div>
+                            <p class="font-semibold text-lg">
+                                Order #{{ order["ID"] }}
+                            </p>
+                        </div>
 
-                <div class="flex justify-between items-center border-b border-[#E6D5C3] pb-4 mb-4">
-                    <div>
-                        <p class="font-semibold text-lg">
-                            Order #{{ Sale.Id }}
-                        </p>
-                        <p class="text-sm">
-                            Placed on {{ order.date }}
-                        </p>
+                        <span class="px-4 py-1 rounded-full text-sm font-medium bg-green-100 text-green-700">
+                            Price: ${{ order["Total"] }}
+                        </span>
                     </div>
 
-                    <span class="px-4 py-1 rounded-full text-sm font-medium
-                        {% if order.status == 'Completed' %}
-                            bg-green-100 text-green-700
-                        {% elif order.status == 'Pending' %}
-                            bg-yellow-100 text-yellow-700
-                        {% else %}
-                            bg-gray-200 text-gray-700
-                        {% endif %}
-                    ">
-                        {{ order.status }}
-                    </span>
-                </div>
 
-                <div class="space-y-4">
-                    {% for item in order.items %}
                     <div class="flex justify-between items-center">
                         <div>
-                            <p class="font-medium">{{ item.name }}</p>
-                            <p class="text-sm">Quantity: {{ item.qty }}</p>
+                            <p class="font-medium">Total Items:</p>
+                            <p class="text-sm text-[#9a7a5a]">
+                                 Quantity: {{order["Quantity"] }}
+                            </p>
                         </div>
-                        <div class="font-semibold">
-                            $ {{ item.price * item.qty }}
-                        </div>
+
+                        <p class="font-semibold text-lg">
+                            Date of Order: {{order["Timestamp"].strftime("%x")}}
+                        </p>
                     </div>
-                    {% endfor %}
+
                 </div>
-
-
-                <div class="flex justify-between items-center border-t border-[#E6D5C3] mt-6 pt-4">
-                    <p class="font-semibold text-lg">Total</p>
-                    <p class="font-semibold text-lg">$ {{ order.total }}</p>
-                </div>
-
-            </div>
             {% endfor %}
 
         {% endif %}
 
     </main>
-</body>
 
+</body>
 </html>

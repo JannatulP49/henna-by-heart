@@ -261,12 +261,12 @@ def order():
                    
         SELECT
               `Sale`.`ID`,
-              `Sale`.`Timestamp`
+              `Sale`.`Timestamp`,
                SUM(`SaleCart`.`Quantity`) AS "Quantity",
                SUM(`SaleCart`.`Quantity` * `Product`.`Price`) AS "Total"
         FROM `Sale`
         JOIN `SaleCart` ON `SaleCart`.`SaleID` = `Sale`.`ID`
-        JOiN `Product` ON `Product`.`ID` = `SaleCart`.`ProductID`
+        JOIN `Product` ON `Product`.`ID` = `SaleCart`.`ProductID`
         WHERE `UserID` = %s    
         GROUP BY `Sale`.`ID`; 
                    """, (current_user.id))
