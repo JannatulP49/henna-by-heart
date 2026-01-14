@@ -70,13 +70,70 @@
                         class="w-full py-2 bg-[#e6af6c] text-white border border-[#bf925c] rounded-full font-semibold hover:bg-[#f5bf7d]">
                         Buy Now
                     </button>
-
-
                 </div>
             </div>
 
         </div>
     </div>
+
+    <div class="max-w-7xl mx-auto p-6 mt-12">
+        <div class="bg-white rounded shadow p-6">
+
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">
+                Customer Reviews
+            </h2>
+
+
+<form method="post" class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md space-y-4">
+
+    <label class="block text-gray-800 font-semibold mb-2">
+        Rating
+    </label>
+    <div class="flex space-x-2 mb-4">
+
+        {% for i in range(1, 6) %}
+        <label class="flex items-center space-x-1">
+            <input type="radio" name="rating" value="{{ i }}" required class="accent-[#e6af6c]" />
+            <span>{{ i }}</span>
+        </label>
+        {% endfor %}
+    </div>
+
+    <div>
+        <label class="block text-gray-800 font-semibold mb-2">
+            Your Name
+        </label>
+        <input type="text" name="name" required
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#e6af6c]" />
+    </div>
+
+    <div>
+        <label class="block text-gray-800 font-semibold mb-2">
+            Your Review
+        </label>
+        <textarea name="review" required rows="4"
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#e6af6c]"></textarea>
+    </div>
+
+    <button type="submit"
+        class="w-full px-6 py-2 bg-[#e6af6c] text-white border border-[#bf925c] rounded-full font-semibold hover:bg-[#f5bf7d] transition-colors">
+        Submit Review
+    </button>
+</form>
+
+<h2 class="text-2xl font-bold text-gray-800 mt-8 mb-4 text-center">Reviews</h2>
+
+<div class="max-w-lg mx-auto space-y-4">
+    {% for review in reviews %}
+    <div class="border border-gray-200 p-4 rounded-lg shadow-sm bg-white">
+        <p class="font-semibold text-gray-700">{{ review["UserID"] }}</p>
+        <p class="text-gray-600 mt-1">{{ review["Comments"] }}</p>
+        <p class="text-sm text-gray-500 mt-2">Rating: {{ review["Rating"] }}/5</p>
+    </div>
+    {% else %}
+    <p class="text-center text-gray-500">No reviews yet.</p>
+    {% endfor %}
+</div>
 
 </body>
 

@@ -68,7 +68,16 @@ def product_page(product_id):
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM `Product` WHERE `ID` = %s", (product_id))
     result = cursor.fetchone()
+
+    cursor = connection.cursor()
+    cursor.execute(
+    "SELECT * FROM `Review` "
+    "JOIN `User` ON `User`.ID = `Review`.`UserID` "
+    "WHERE `ProductID` = %s",
+    (product_id,))
+    result2 = cursor.fetchall()
     connection.close()
+
 
     if result is None:
         abort(404)
