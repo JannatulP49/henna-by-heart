@@ -23,6 +23,15 @@
                 <h1 class="text-3xl font-bold text-gray-900">
                     {{ product['Name'] }}
                 </h1>
+                <div class="flex items-center space-x-2">
+                    {% if average_rating %}
+                    <p class="text-black-500 font-semibold">Average Rating: {{ average_rating }}/5</p>
+                    <p class="text-gray-500">({{ reviews|length }} reviews)</p>
+                    {% else %}
+                    <p class="text-gray-500">No reviews yet.</p>
+                    {% endif %}
+                </div>
+
 
 
                 <p class="text-3xl font-semibold text-gray-900">

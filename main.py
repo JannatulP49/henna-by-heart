@@ -66,23 +66,30 @@ def browse():
 def product_page(product_id):
     connection = connect_db()
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM `Product` WHERE `ID` = %s", (product_id))
+    cursor.execute("SELECT * FROM `Product` WHERE `ID` = %s", (product_id,))
     result = cursor.fetchone()
 
     cursor = connection.cursor()
     cursor.execute(
-    "SELECT * FROM `Review` "
-    "JOIN `User` ON `User`.ID = `Review`.`UserID` "
-    "WHERE `ProductID` = %s",
-    (product_id,))
-    result2 = cursor.fetchall()
+        "SELECT * FROM `Review` "
+        "JOIN `User` ON `User`.ID = `Review`.`UserID` "
+        "WHERE `ProductID` = %s",
+        (product_id,)
+    )
+    reviews = cursor.fetchall()
     connection.close()
-
 
     if result is None:
         abort(404)
 
-    return render_template("product.html.jinja", product=result, reviews=result2)
+    if reviews:
+        total_rating = sum(review["Rating"] for review in reviews)
+        average_rating = round(total_rating / len(reviews), 2)
+    else:
+        average_rating = None
+
+    return render_template("product.html.jinja", product=result, reviews=reviews, average_rating=average_rating)
+
 
 @app.route("/product/<product_id>/add_to_cart", methods=["POST"])
 @login_required
