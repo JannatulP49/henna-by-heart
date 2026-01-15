@@ -105,7 +105,7 @@ def add_to_cart(product_id):
         VALUES (%s, %s, %s)
         ON DUPLICATE KEY UPDATE
         `Quantity` = `Quantity` + %s 
-    """, (quantity, product_id, current_user.id, quantity))
+    """, (quantity, product_id, current_user.id, quantity,))
         
     connection.close()
     return redirect('/cart')
@@ -204,7 +204,7 @@ def cart():
     cursor = connection.cursor()
 
     cursor.execute("""
-        SELECT * FROM `Cart`
+        SELECT * FROM `Cart` 
         JOIN `Product` ON `Product`.`ID` = `Cart`.`ProductID`
         WHERE `UserID` = %s 
     """, (current_user.id))  
