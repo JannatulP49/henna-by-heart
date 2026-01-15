@@ -82,7 +82,7 @@ def product_page(product_id):
     if result is None:
         abort(404)
 
-    return render_template("product.html.jinja", product=result)
+    return render_template("product.html.jinja", product=result, reviews=result2)
 
 @app.route("/product/<product_id>/add_to_cart", methods=["POST"])
 @login_required
@@ -103,12 +103,31 @@ def add_to_cart(product_id):
     connection.close()
     return redirect('/cart')
 
+@app.route("/product/<product_id>/review", methods=["POST"])
+@login_required
+def add_review(product_id):
+    #get imput values from the form
+    rating = request.form["rating"]
+    comments = request.form["comments"]
+    #connect to the database
+    connection = connect_db()
+    cursor = connection.cursor()
+
+    #Write our SQl add the review 
+    cursor.execute("""
+    INSERT INTO `Review`
+        (`Rating`, `Comments`, `UserID`, `ProductID`)
+    VALUES
+        (%s, %s, %s, %s)
+""", (rating, comments, current_user.id, product_id))
+
+    connection.close()
+    #return user back to product page 
+    return redirect(f"/product/{product_id}")
 
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template("404.html", error=error), 404
-
-    
 
 
 @app.route("/register", methods=["POST", "GET"])
@@ -283,4 +302,6 @@ def order():
     connection.close()
     
     return render_template("order.html.jinja", orders=result)
+
+
     
