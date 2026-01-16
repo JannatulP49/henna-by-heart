@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Product Not Found</title>
@@ -63,6 +64,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>404</h1>
@@ -70,13 +72,14 @@
 
         <p>
             {% if error and error.description %}
-                {{ error.description }}
+            {{ error.description }}
             {% else %}
-                The product you are looking for doesn’t exist or may have been removed.
+            The product you are looking for doesn’t exist or may have been removed.
             {% endif %}
         </p>
 
         <a href="{{ url_for('index') }}">Back to Home</a>
     </div>
 </body>
+
 </html>

@@ -1,75 +1,59 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>Henna By Heart</title>
-  </head>
 
-  <body class="bg-[#faf7f2]">
-    {% include "components/navbar.html.jinja" %}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <title>Henna By Heart</title>
+</head>
 
-    {% for message in get_flashed_messages() %}
-       <li>{{ message }}</li>
-    {% endfor %}
+<body class="bg-[#faf7f2]">
+  {% include "components/navbar.html.jinja" %}
 
-    <div class="flex justify-center mt-12 px-4">
-      <div class="w-full max-w-md bg-white shadow-md border border-gray-200 rounded-lg p-8">
-        
+  {% for message in get_flashed_messages() %}
+  <li>{{ message }}</li>
+  {% endfor %}
 
-        <h1 class="text-2xl font-semibold text-center text-[#694f3a] mb-6">
-          Login Now
-        </h1>
+  <div class="flex justify-center mt-12 px-4">
+    <div class="w-full max-w-md bg-white shadow-md border border-gray-200 rounded-lg p-8">
 
 
-        <form action="/login" method="post" class="flex flex-col gap-4">
-
-          <div>
-            <label class="block text-sm font-medium text-[#694f3a] mb-1">Email</label>
-            <input
-              required
-              type="email"
-              name="email"
-              required
-              class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring focus:ring-[#694f3a]"
-              placeholder="you@example.com"
-            />
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-[#694f3a] mb-1">Password</label>
-            <input
-              required
-              type="password"
-              name="password"
-              required
-              class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring focus:ring-[#694f3a]"
-              placeholder="Enter your password"
-            />
-          </div>
-
-          <button
-            type="submit"
-            class="mt-2 w-full bg-[#694f3a] hover:bg-[#7d644f] text-white font-medium py-2 rounded transition duration-200"
-          >
-            Sign In
-          </button>
-        </form>
+      <h1 class="text-2xl font-semibold text-center text-[#694f3a] mb-6">
+        Login Now
+      </h1>
 
 
-        <div class="mt-6 text-center text-sm">
-          <p class="text-gray-600">
-            Don't have an account?
-            <a
-              href="/register"
-              class="text-[#7d644f] hover:text-[#694f3a] font-medium"
-            >
-              Create one
-            </a>
-          </p>
+      <form action="/login" method="post" class="flex flex-col gap-4">
+
+        <div>
+          <label class="block text-sm font-medium text-[#694f3a] mb-1">Email</label>
+          <input required type="email" name="email" required
+            class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring focus:ring-[#694f3a]"
+            placeholder="you@example.com" />
         </div>
+
+        <div>
+          <label class="block text-sm font-medium text-[#694f3a] mb-1">Password</label>
+          <input required type="password" name="password" required
+            class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring focus:ring-[#694f3a]"
+            placeholder="Enter your password" />
+        </div>
+
+        <button type="submit"
+          class="mt-2 w-full bg-[#694f3a] hover:bg-[#7d644f] text-white font-medium py-2 rounded transition duration-200">
+          Sign In
+        </button>
+      </form>
+
+
+      <div class="mt-6 text-center text-sm">
+        <p class="text-gray-600">
+          Don't have an account?
+          <a href="/register" class="text-[#7d644f] hover:text-[#694f3a] font-medium">
+            Create one
+          </a>
+        </p>
       </div>
     </div>
-
-    
+  </div>

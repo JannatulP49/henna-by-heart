@@ -66,14 +66,27 @@
                     <p class="text-green-600 font-semibold">In Stock</p>
 
 
-                    <form method="post" action="/product/{{product['ID']}}/add_to_cart">
-                        <input type="number" name="QTY" value="1" min="1" max="3">
+                    <form method="post" action="/product/{{product['ID']}}/add_to_cart" class="space-y-3">
+
+
+                        <div class="w-24">
+                            <label class="block mb-1 text-s font-medium text-gray-600">
+                                Qty:
+                            </label>
+                            <input type="number" name="QTY" value="1" min="1"
+                                class="w-full px-2 py-1 text-sm font-semibold border border-[#bf925c] rounded-md focus:outline-none focus:ring-1 focus:ring-[#e6af6c]" />
+                        </div>
+
                         <button
-                            class="w-full py-2 bg-[#e6af6c] text-white border border-[#bf925c] rounded-full font-semibold hover:bg-[#f5bf7d]">
+                            class="w-full py-2 bg-[#7a5b40] text-white border border-[#bf925c] rounded-full font-semibold hover:bg-[#946f4e] transition">
                             Add to Cart
                         </button>
 
                     </form>
+
+
+
+
 
                 </div>
             </div>
@@ -99,13 +112,20 @@
 
 
                 </div>
-                <select name="rating">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+                <div class="w-24">
+                    <label class="block mb-1 text-xs font-medium text-gray-600">
+                        Rating
+                    </label>
+                    <select name="rating" class="w-full px-2 py-1 text-sm font-semibold border border-[#bf925c] rounded-md bg-white
+               focus:outline-none focus:ring-1 focus:ring-[#e6af6c]">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
 
 
                 <div>
@@ -125,7 +145,7 @@
                 </div>
 
                 <button type="submit"
-                    class="w-full px-6 py-2 bg-[#e6af6c] text-white border border-[#bf925c] rounded-full font-semibold hover:bg-[#f5bf7d] transition-colors">
+                    class="w-full px-6 py-2 bg-[#7a5b40] text-white border border-[#946f4e] rounded-full font-semibold hover:bg-[#946f4e] transition-colors">
                     Submit Review
                 </button>
             </form>

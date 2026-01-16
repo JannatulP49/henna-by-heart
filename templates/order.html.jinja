@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,53 +19,54 @@
         </h1>
 
         {% if orders|length == 0 %}
-            <div class="text-center py-20 bg-white rounded-md shadow-sm">
-                <p class="text-lg mb-6">
-                    You haven't placed any orders yet!
-                </p>
+        <div class="text-center py-20 bg-white rounded-md shadow-sm">
+            <p class="text-lg mb-6">
+                You haven't placed any orders yet!
+            </p>
 
-                <a href="/browse"
-                   class="inline-block bg-[#7a5b40] hover:bg-[#6a4f38] text-[#F8EDE3] px-6 py-3 rounded-md transition">
-                    Start Shopping
-                </a>
-            </div>
+            <a href="/browse"
+                class="inline-block bg-[#7a5b40] hover:bg-[#6a4f38] text-[#F8EDE3] px-6 py-3 rounded-md transition">
+                Start Shopping
+            </a>
+        </div>
         {% else %}
 
-            {% for order in orders %}
-                <div class="bg-white rounded-md shadow-sm mb-8 p-6">
+        {% for order in orders %}
+        <div class="bg-white rounded-md shadow-sm mb-8 p-6">
 
-                    <div class="flex justify-between items-center border-b border-[#E6D5C3] pb-4 mb-4">
-                        <div>
-                            <p class="font-semibold text-lg">
-                                Order #{{ order["ID"] }}
-                            </p>
-                        </div>
-
-                        <span class="px-4 py-1 rounded-full text-sm font-medium bg-green-100 text-green-700">
-                            Price: ${{ order["Total"] }}
-                        </span>
-                    </div>
-
-
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <p class="font-medium">Total Items:</p>
-                            <p class="text-sm text-[#9a7a5a]">
-                                 Quantity: {{order["Quantity"] }}
-                            </p>
-                        </div>
-
-                        <p class="font-semibold text-lg">
-                            Date of Order: {{order["Timestamp"].strftime("%x")}}
-                        </p>
-                    </div>
-
+            <div class="flex justify-between items-center border-b border-[#E6D5C3] pb-4 mb-4">
+                <div>
+                    <p class="font-semibold text-lg">
+                        Order #{{ order["ID"] }}
+                    </p>
                 </div>
-            {% endfor %}
+
+                <span class="px-4 py-1 rounded-full text-sm font-medium bg-green-100 text-green-700">
+                    Price: ${{ order["Total"] }}
+                </span>
+            </div>
+
+
+            <div class="flex justify-between items-center">
+                <div>
+                    <p class="font-medium">Total Items:</p>
+                    <p class="text-sm text-[#9a7a5a]">
+                        Quantity: {{order["Quantity"] }}
+                    </p>
+                </div>
+
+                <p class="font-semibold text-lg">
+                    Date of Order: {{order["Timestamp"].strftime("%x")}}
+                </p>
+            </div>
+
+        </div>
+        {% endfor %}
 
         {% endif %}
 
     </main>
 
 </body>
+
 </html>

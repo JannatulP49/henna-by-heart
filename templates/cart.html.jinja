@@ -19,7 +19,7 @@
             {% if cart|length == 0 %}
             <div class="text-center py-16">
                 <p class="text-lg mb-6">
-                    Your cart is empty 
+                    Your cart is empty
                 </p>
 
                 <a href="/browse"
@@ -30,45 +30,65 @@
             {% else %}
 
             {% for x in cart %}
-            <div class="flex items-center justify-between py-8 border-b border-[#E6D5C3] last:border-b-0">
+            <div class="flex justify-between items-start py-6 border-b border-[#E6D5C3] last:border-b-0">
 
-                <div class="flex gap-8 items-center">
+
+                <div class="flex gap-6">
+
 
                     <a href="/product/{{ x['ID'] }}">
-                        <img src="{{ x['Image'] }}" alt="{{ x['Name'] }}" class="w-44 h-44 object-contain" />
+                        <img src="{{ x['Image'] }}" alt="{{ x['Name'] }}"
+                            class="w-32 h-32 object-contain rounded-xl bg-white p-2 shadow-sm">
                     </a>
 
-                    <div>
-                        <a href="/product/{{ x['ID'] }}" class="text-xl font-medium hover:text-[#7a5b40]/80 block">
-                            {{ x["Name"] }}
-                        </a>
 
-                        <p class="text-sm mt-2">
-                            In Stock
-                        </p>
+                    <div class="flex flex-col justify-between">
 
-                        <p class="text-sm mt-2">
-                        <form method="post" action="/cart/{{ x['ProductID'] }}/update_qty">
-                            <input name="qty" type="number" value="{{ x['Quantity'] }}">
-                            Quantity:
-                            <button type="submit">Update</button>
-                        </form>
-                        </p>
-                        <p class="text-sm mt-2">
-                        <form method="post" action="/cart/{{ x['ProductID'] }}/delete">
-                            <button type="submit">Remove</button>
-                        </form>
-                        </p>
+                        <div>
+                            <a href="/product/{{ x['ID'] }}" class="text-lg font-medium hover:text-[#7a5b40]/80">
+                                {{ x["Name"] }}
+                            </a>
+
+                            <p class="text-m text-brown mt-1">
+                                In stock
+                            </p>
+                        </div>
+
+
+                        <div class="mt-4 space-y-3">
+
+                    
+                            <form method="post" action="/cart/{{ x['ProductID'] }}/update_qty"
+                                class="flex items-center gap-2">
+                                <label class="text-s text-brown">
+                                    Qty
+                                </label>
+                                <input name="qty" type="number" value="{{ x['Quantity'] }}" min="1" class="w-16 px-2 py-1 text-sm border border-[#bf925c] rounded-md
+                               focus:outline-none focus:ring-1 focus:ring-[#e6af6c]">
+                                <button type="submit" class="text-xs px-3 py-1 rounded-full border border-[#bf925c]
+                               text-[#694f3a] hover:bg-[#F8EDE3] transition">
+                                    Update
+                                </button>
+                            </form>
+
+                            <form method="post" action="/cart/{{ x['ProductID'] }}/delete">
+                                <button type="submit" class="text-xs text-[#7a5b40] hover:underline">
+                                    Remove
+                                </button>
+                            </form>
+
+                        </div>
                     </div>
                 </div>
 
 
-                <div class="text-xl font-semibold whitespace-nowrap">
-                    $ {{ x["Price"] * x["Quantity"] }}
+                <div class="text-lg font-semibold text-[#694f3a] whitespace-nowrap mt-2">
+                    ${{ x["Price"] * x["Quantity"] }}
                 </div>
 
             </div>
             {% endfor %}
+
             {% endif %}
         </section>
 
@@ -78,11 +98,11 @@
                 <span class="font-semibold">$ {{ total }}</span>
             </p>
 
-          <a href="/checkout">
-            <button class="w-full mt-6 bg-[#7a5b40] hover:bg-[#6a4f38] text-[#F8EDE3] font-medium py-3 rounded-md">
-                Proceed to Checkout
-            </button>
-          </a>
+            <a href="/checkout">
+                <button class="w-full mt-6 bg-[#7a5b40] hover:bg-[#6a4f38] text-[#F8EDE3] font-medium py-3 rounded-md">
+                    Proceed to Checkout
+                </button>
+            </a>
         </aside>
 
     </main>

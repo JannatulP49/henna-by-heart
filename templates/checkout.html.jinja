@@ -21,7 +21,7 @@
             {% if cart|length == 0 %}
             <div class="text-center py-16">
                 <p class="text-lg mb-6">
-                    Your cart is empty 🛒
+                    Your cart is empty 
                 </p>
                 <a href="/browse"
                     class="inline-block bg-[#7a5b40] hover:bg-[#6a4f38] text-[#F8EDE3] font-medium px-6 py-3 rounded-md">
@@ -31,44 +31,60 @@
             {% else %}
 
             {% for x in cart %}
-            <div class="flex items-center justify-between py-8 border-b border-[#E6D5C3] last:border-b-0">
+            <div class="flex justify-between items-start py-6 border-b border-[#E6D5C3] last:border-b-0">
 
-                <div class="flex gap-8 items-center">
+
+                <div class="flex gap-6">
+
+
                     <a href="/product/{{ x['ID'] }}">
-                        <img src="{{ x['Image'] }}" alt="{{ x['Name'] }}" class="w-44 h-44 object-contain" />
+                        <img src="{{ x['Image'] }}" alt="{{ x['Name'] }}"
+                            class="w-32 h-32 object-contain rounded-xl bg-white p-2 shadow-sm">
                     </a>
 
-                    <div>
-                        <a href="/product/{{ x['ID'] }}" class="text-xl font-medium hover:text-[#7a5b40]/80 block">
-                            {{ x["Name"] }}
-                        </a>
+                    <div class="flex flex-col justify-between">
 
-                        <p class="text-sm mt-2">In Stock</p>
+                        <div>
+                            <a href="/product/{{ x['ID'] }}" class="text-lg font-medium hover:text-[#7a5b40]/80">
+                                {{ x["Name"] }}
+                            </a>
 
-                        <form method="post" action="/cart/{{ x['ProductID'] }}/update_qty" class="mt-2">
-                            <label class="text-sm mr-2">Quantity:</label>
-                            <input name="qty" type="number" value="{{ x['Quantity'] }}" min="1"
-                                class="border border-gray-300 rounded-md px-2 py-1 w-20">
-                            <button type="submit"
-                                class="ml-2 bg-[#7a5b40] hover:bg-[#6a4f38] text-[#F8EDE3] px-2 py-1 rounded-md text-sm">
-                                Update
-                            </button>
-                        </form>
+                            <p class="text-m text-brown mt-1">In stock</p>
+                        </div>
 
-                        <form method="post" action="/cart/{{ x['ProductID'] }}/delete" class="mt-2">
-                            <button type="submit"
-                                class="bg-[#7a5b40] hover:bg-[#6a4f38] text-white px-3 py-1 rounded-md text-sm">
-                                Remove
-                            </button>
-                        </form>
+                        <div class="mt-4 space-y-3">
+
+
+                            <form method="post" action="/cart/{{ x['ProductID'] }}/update_qty"
+                                class="flex items-center gap-2">
+                                <label class="text-s text-brown">Qty</label>
+                                <input name="qty" type="number" value="{{ x['Quantity'] }}" min="1" class="w-16 px-2 py-1 text-sm border border-[#bf925c] rounded-md
+                               focus:outline-none focus:ring-1 focus:ring-[#e6af6c]">
+                                <button type="submit" class="text-xs px-3 py-1 rounded-full border border-[#bf925c]
+                               text-[#694f3a] hover:bg-[#F8EDE3] transition">
+                                    Update
+                                </button>
+                            </form>
+
+
+                            <form method="post" action="/cart/{{ x['ProductID'] }}/delete">
+                                <button type="submit" class="text-xs text-[#7a5b40] hover:underline">
+                                    Remove
+                                </button>
+                            </form>
+
+                        </div>
                     </div>
                 </div>
 
-                <div class="text-xl font-semibold whitespace-nowrap">
-                    $ {{ x["Price"] * x["Quantity"] }}
+
+                <div class="text-lg font-semibold text-[#694f3a] whitespace-nowrap mt-2">
+                    ${{ x["Price"] * x["Quantity"] }}
                 </div>
+
             </div>
             {% endfor %}
+
             {% endif %}
         </section>
 
@@ -80,8 +96,7 @@
 
                 <div>
                     <label class="block mb-1 font-medium">Full Name</label>
-                    <input type="text" name="name" required
-                        class="w-full border border-gray-300 rounded-md px-3 py-2">
+                    <input type="text" name="name" required class="w-full border border-gray-300 rounded-md px-3 py-2">
                 </div>
 
                 <div>
@@ -98,14 +113,12 @@
 
                 <div>
                     <label class="block mb-1 font-medium">City</label>
-                    <input type="text" name="city" required
-                        class="w-full border border-gray-300 rounded-md px-3 py-2">
+                    <input type="text" name="city" required class="w-full border border-gray-300 rounded-md px-3 py-2">
                 </div>
 
                 <div>
                     <label class="block mb-1 font-medium">ZIP / Postal Code</label>
-                    <input type="text" name="zip" required
-                        class="w-full border border-gray-300 rounded-md px-3 py-2">
+                    <input type="text" name="zip" required class="w-full border border-gray-300 rounded-md px-3 py-2">
                 </div>
 
                 </div>
